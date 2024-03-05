@@ -8,7 +8,7 @@ const PsychologList = () => {
     const [therapist, setTherapist] = useState([])
 
     const getData = async()=>{
-        await axios.get('https://dummyjson.com/users')
+        await axios.get('/api/psychologist')
         .then(result=> setTherapist(result.data))
     }
 
@@ -17,6 +17,7 @@ const PsychologList = () => {
     },[])
 
     console.log(therapist)
+
     return (
 
         <div className='mb-10 px-8'>
@@ -27,13 +28,14 @@ const PsychologList = () => {
             sm:grid-cols-2 md:grid-cols-3
             gap-7 mt-4
              lg:grid-cols-4'>
-                { therapist.users ? therapist.users.slice(0,12).map((item,index)=>(
+                { therapist ? therapist.slice(0,12).map((item,index)=>(
                      <div className='border-[1px] rounded-lg p-3
                      cursor-pointer hover:border-primary
                      hover:shadow-sm transition-all ease-in-out'
                      key={index}
                      >
-                         <img src={item.image}
+                         <img 
+                         src={item.avatar}
                          alt='doctor'
                          width={500}
                          height={200}
@@ -42,9 +44,9 @@ const PsychologList = () => {
                          <div className='mt-3 items-baseline flex flex-col gap-1'>
                              <h2 className='text-[10px] bg-blue-100 p-1 rounded-full
                              px-2 text-primary'>Clinic</h2>
-                             <h2 className='font-bold'>{item.firstName} {item.lastName}</h2>
+                             <h2 className='font-bold'>{item.name}</h2>
                              <h2 className='text-primary text-sm'>{item.university}</h2>
-                             <h2 className='text-gray-500 text-sm'>{item.address.addres}</h2>
+                             <h2 className='text-gray-500 text-sm'>{''}</h2>
                              <Link href='/' className='w-full'>
                              <h2 className='p-2 px-3 border-[1px] border-primary
                              text-primary rounded-full w-full text-center

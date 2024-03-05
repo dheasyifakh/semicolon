@@ -6,7 +6,7 @@ const Articles = () => {
     const [blog, setBlog] = useState([])
 
     const getBlog = async() =>{
-        await axios.get('https://newsapi.org/v2/everything?q=tesla&from=2024-02-03&sortBy=publishedAt&apiKey=7e7b487d634a40d7bdbd1156b32031da')
+        await axios.get('/api/blog')
         .then(result => setBlog(result.data))
     }
     useEffect(()=>{
@@ -27,23 +27,23 @@ const Articles = () => {
              sm:grid-cols-2 md:grid-cols-3
              gap-7 mt-4
               lg:grid-cols-4' >
-                 { blog.articles ? blog.articles.slice(0,10).map((item,index)=>(
+                 { blog ? blog.slice(0,10).map((item,index)=>(
                    <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg" key={index}>
                      <img
                          alt=""
-                         src={item.urlToImage}
+                         src={item.image}
                          class="h-56 w-full object-cover"
                      />
  
                      <div class="bg-white p-4 sm:p-6">
-                         <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
+                         <time datetime="2022-10-10" class="block text-xs text-gray-500">{item.createdAt}</time>
  
                          <a href="#">
                          <h3 class="mt-0.5 text-lg text-gray-900">{item.title}</h3>
                          </a>
  
                          <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                         {item.description}
+                         {item.content}
                          </p>
                      </div>
                  </article>

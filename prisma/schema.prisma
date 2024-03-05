@@ -28,8 +28,9 @@ model Booking{
 }
 model User {
   id            String       @default(cuid()) @id
-  name          String?
   email         String?   @unique
+  name          String?
+  avatar        String
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   booking       Booking[]
@@ -38,9 +39,11 @@ model User {
 
 model Psychologist{
   id            String       @default(cuid()) @id
-  name          String?
+  name          String
   email         String?   @unique
-  experience    String?
+  experience    String
+  university    String
+  avatar        String
   category      String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
