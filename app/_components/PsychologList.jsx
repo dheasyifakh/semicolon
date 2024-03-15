@@ -20,7 +20,7 @@ const PsychologList = () => {
 
     return (
 
-        <div className='mb-10 px-8'>
+        <div className='mb-24 px-8'>
             <h2 className='font-bold text-xl'>
             </h2>
     
@@ -56,7 +56,14 @@ const PsychologList = () => {
                              </Link>
                          </div>
                      </div>
-                )) : ( <p>Loading...</p>)
+                )) : [1,2,3,4,5,6].map((item,index)=>(
+            <div className='h-[220px] bg-slate-200 
+            w-full rounded-lg animate-pulse'>
+
+            </div>
+        ))
+       
+        
 
                 }
                    

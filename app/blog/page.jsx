@@ -12,7 +12,15 @@ const Articles = () => {
     useEffect(()=>{
         getBlog()
     },[])
-    console.log(blog)
+    
+    const formattedDate = (createdAt) =>{
+        const dateString = createdAt;
+        const date = new Date(dateString);
+    
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        return  date.toLocaleDateString('en-GB', options);
+    }
+   
     return (
     <div className='mb-10 px-8 mt-20'>
         <div className="mb-10 items-center px-5 flex flex-col gap-2">
@@ -28,21 +36,21 @@ const Articles = () => {
              gap-7 mt-4
               lg:grid-cols-4' >
                  { blog ? blog.slice(0,10).map((item,index)=>(
-                   <article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg" key={index}>
+                   <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg" key={index}>
                      <img
                          alt=""
                          src={item.image}
-                         class="h-56 w-full object-cover"
+                         className="h-56 w-full object-cover"
                      />
  
-                     <div class="bg-white p-4 sm:p-6">
-                         <time datetime="2022-10-10" class="block text-xs text-gray-500">{item.createdAt}</time>
+                     <div className="bg-white p-4 sm:p-6">
+                         <time datetime="2022-10-10" className="block text-xs text-gray-500">{formattedDate(item.createdAt)}</time>
  
                          <a href="#">
-                         <h3 class="mt-0.5 text-lg text-gray-900">{item.title}</h3>
+                         <h3 className="mt-0.5 text-lg text-gray-900">{item.title}</h3>
                          </a>
  
-                         <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+                         <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
                          {item.content}
                          </p>
                      </div>
